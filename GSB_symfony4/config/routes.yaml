@@ -1,0 +1,26 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController
+
+accueil:
+    path: /
+    controller: App\Controller\AccueilController::index
+
+
+visiteur:
+    path: /visiteur
+    controller: App\Controller\VisiteurController::index
+    
+    
+menuv:
+    path: /visiteur/menu
+    controller: App\Controller\MenuVController::index
+
+    
+consulter:
+    path: /visiteur/consulter
+    controller: App\Controller\ConsulterController::index
+
+#menu:
+#    path: /visiteur/menu
+#    controller: App\Controller\MenuVController::index

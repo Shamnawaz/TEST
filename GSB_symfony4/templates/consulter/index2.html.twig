@@ -1,0 +1,38 @@
+
+{% block body %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif;}
+    .example-wrapper code{background: #F5F5F5; padding: 2px 6px; }
+    table { font-family: arial, sans-serif; border-collapse: collapse; width: 100%;}
+    td, th {border: 1px solid #dddddd; text-align: left;  padding: 8px;}
+        
+        
+        
+        
+</style>
+<div class="example-wrapper">
+<table>
+    
+    <tr>
+        <th>Etat</th>
+        <th>Libelle</th>
+        <th>dateModif</th>
+        <th>quantite</th>
+        <th>montant</th>
+        <th>date</th>
+    </tr>
+    
+    <tr>
+        <td>{{ b1['id'] }}</td>
+        <td>{{ b1['libelle'] }}</td>
+        <td>{{ b1['dateModif'] }}</td>
+        <td>{{ b1['quantite'] }}</td>
+        <td>{{ b1['montant'] }}</td>
+        <td>{{ b1['date'] }}</td>
+        
+    </tr>
+</table>    
+</div>
+
+{% endblock %}

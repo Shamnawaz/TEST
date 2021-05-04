@@ -21,6 +21,18 @@ consulter:
     path: /visiteur/consulter
     controller: App\Controller\ConsulterController::index
 
+renseigner:
+    path: /visiteur/renseigner
+    controller: App\Controller\RenseignerController::index
+    
+renseignerff:
+    path: /visiteur/renseignerff
+    controller: App\Controller\RenseignerffController::index
+
+renseignerhf:
+    path: /visiteur/renseignerhf
+    controller: App\Controller\RenseignerhfController::index    
+    
 #menu:
 #    path: /visiteur/menu
 #    controller: App\Controller\MenuVController::index

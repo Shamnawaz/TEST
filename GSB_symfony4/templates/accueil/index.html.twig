@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-
-<title>Hello AccueilController!</title>
-
-{% block body %}
-<a href="{{path('visiteur')}}">visiteur</a>
-{% endblock %}
+<html>
+    <head>
+        <title>Hello AccueilController!</title>
+        <link rel="stylesheet" href="{{ asset('Css/style.css') }}" type="text/css"/>
+    </head>
+    <body>
+        {% block body %}
+        <a href="{{path('visiteur')}}">visiteur</a>
+        {% endblock %}
+    </body>
+</html>

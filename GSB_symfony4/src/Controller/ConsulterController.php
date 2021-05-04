@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType ;
 
 class ConsulterController extends AbstractController
 {
-    public function index()
+    public function index(Request $requete)
     {
 		
 		
@@ -31,7 +31,9 @@ class ConsulterController extends AbstractController
 					
 		$request = Request::createFromGlobals() ;		
 		$form->handleRequest( $request ) ;
-		
+		$session = $requete->getSession();
+                $erreur = "Il n'y a pas de fiche de frais à cette date";
+               
 		
 					
 		if($form->isSubmitted() && $form->isValid() ) {
@@ -39,31 +41,51 @@ class ConsulterController extends AbstractController
 			
 			$data = $form->getData();
 			$bd = new \PDO('mysql:host=localhost;dbname=GSB' , 'developpeur', 'azerty');
-#			$sql = 
-			
-			
-#			if($resultat->rowCount() == 1) {
-				
-#				$e = $resultat->fetch();
-				
-#				return $this->render('menu_v/index.html.twig' , [
-#				'controller_name' => 'AccueilController',
-#				]);
+                        $comb = sprintf("%02d%04d",$data['Mois'],$data['Annee']) ;
+                        $id = $session->get('id');
+                        $resultat = $bd-> prepare('select e.id, 
+                            e.libelle , 
+                            f.dateModif,
+                            l.quantite, 
+                            LigneFraisHorsForfait.montant, 
+                            LigneFraisHorsForfait.libelle, 
+                            LigneFraisHorsForfait.date 
+                            from FicheFrais as f inner join Etat as e 
+                            on f.idEtat = e.id  
+                            inner join LigneFraisForfait as l on f.idVisiteur = l.idVisiteur 
+                            inner join LigneFraisHorsForfait on f.idVisiteur = LigneFraisHorsForfait.idVisiteur 
+                            where f.mois = :mois');
+                        
+                        $resultat->bindParam(':mois' , $comb);
+#                        $resultat-> bindParam(':idVisiteur' , $id);
+                        $resultat->execute();
+                        $b1 = $resultat->fetch(\PDO::FETCH_ASSOC);
+                        
+                        
+                        
+                        
+                        
+                        
+                        return $this->render('consulter/index2.html.twig', [
+                        'formulaire' => $form->createView() , 'b1' => $b1,
+                        
+                          ]);
+                     
+                
+                }
+                
 
-		}
-				
-				
-
 			
 
-						
+		return $this->render('consulter/index.html.twig', [
+                        'formulaire' => $form->createView(),
+                          ]);				
 		
-        return $this->render('consulter/index.html.twig', [
-            'formulaire' => $form->createView()
-
-        ]);
+     
         
 	}
+        
+        
     
 	
 	

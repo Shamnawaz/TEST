@@ -3,5 +3,8 @@
 <title>Hello MenuVController!</title>
 
 {% block body %}
-<a href="{{path('consulter')}}">Consulter</a>
+{#<p>Visiteur Connecté : {{ info['prenomV'] }} {{ info['nomV'] }} {{ info['idVisiteur'] }}</p>#}
+<a href="{{path('consulter')}}">Consulter</a> </br>
+<a href="{{ path('renseigner') }}">Renseigner</a>
+
 {% endblock %}
